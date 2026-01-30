@@ -1,5 +1,3 @@
-// import java.util.Arrays;
-
 class Solution53 {
 
     // 문제 설명
