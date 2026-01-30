@@ -1,4 +1,4 @@
-class Solution41 {
+class Solution42 {
     // 문제 설명
     // 새로 생긴 놀이기구는 인기가 매우 많아 줄이 끊이질 않습니다. 이 놀이기구의 원래 이용료는 price원 인데, 놀이기구를 N 번 째
     // 이용한다면 원래 이용료의 N배를 받기로 하였습니다. 즉, 처음 이용료가 100이었다면 2번째에는 200,
@@ -12,7 +12,7 @@ class Solution41 {
     // 처음 가지고 있던 금액 money : 1 ≤ money ≤ 1,000,000,000, money는 자연수
     // 놀이기구의 이용 횟수 count : 1 ≤ count ≤ 2,500, count는 자연수
 
-    public long solution41(int price, int money, int count) {
+    public long solution42(int price, int money, int count) {
         long total = (long) price * count * (count + 1) / 2;
 
         if (total > money) {
@@ -23,10 +23,10 @@ class Solution41 {
     }
 
     public static void main(String[] args) {
-        Solution41 sol = new Solution41();
+        Solution42 sol = new Solution42();
         System.out.println(
-                "예 1: " + sol.solution41(3, 20, 4) + " (기대값: 10)");
+                "예 1: " + sol.solution42(3, 20, 4) + " (기대값: 10)");
         System.out.println(
-                "예 2: " + sol.solution41(10, 100, 4) + " (기대값: 0)");
+                "예 2: " + sol.solution42(10, 100, 4) + " (기대값: 0)");
     }
 }
