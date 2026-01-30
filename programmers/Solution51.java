@@ -16,6 +16,8 @@ class Solution51 {
         return new int[] { gcd, lcm };
     }
 
+    // 유클리드 호제법: GCD(n, m) = GCD(m, n % m). m이 0이 되면 n이 최대공약수
+    // 예: GCD(12, 8) → GCD(8, 4) → GCD(4, 0) → 답은 4
     private int getGCD(int n, int m) {
         if (m == 0)
             return n;
@@ -26,5 +28,6 @@ class Solution51 {
         Solution51 sol = new Solution51();
         System.out.println("solution: " + Arrays.toString(sol.solution51(3, 12)));
         System.out.println("solution: " + Arrays.toString(sol.solution51(2, 5)));
+        System.out.println("solution: " + Arrays.toString(sol.solution51(12, 8)));
     }
 }
