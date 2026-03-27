@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
 class Solution65 {
     // 문제 설명
     // 문자열 my_string이 매개변수로 주어집니다. my_string안의 모든 자연수들의 합을 return하도록 solution 함수를

@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
 class Solution64 {
     // 문제 설명
     // 영어에선 a, e, i, o, u

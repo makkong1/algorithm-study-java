@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 class Solution66 {
     // 문제 설명
@@ -21,6 +20,6 @@ class Solution66 {
     public static void main(String[] args) {
         Solution66 sol = new Solution66();
         int[] result = sol.solution(new String[] { "hello", "world", "java" });
-        System.out.println(result);
+        System.out.println(Arrays.toString(result));
     }
 }
