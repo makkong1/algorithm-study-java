@@ -1,61 +1,44 @@
 
 class Solution74 {
     // 문제 설명
-//     네오와 프로도가 숫자놀이를 하고 있습니다. 네오가 프로도에게 숫자를 건넬 때 일부 자릿수를 영단어로 바꾼 카드를 건네주면 프로도는 원래 숫자를 찾는 게임입니다.
+    // 오래전 유행했던 콜라 문제가 있습니다. 콜라 문제의 지문은 다음과 같습니다.
 
-// 다음은 숫자의 일부 자릿수를 영단어로 바꾸는 예시입니다.
-// 1478 → "one4seveneight"
-// 234567 → "23four5six7"
-// 10203 → "1zerotwozero3"
-// 이렇게 숫자의 일부 자릿수가 영단어로 바뀌어졌거나, 혹은 바뀌지 않고 그대로인 문자열 s가 매개변수로 주어집니다. s가 의미하는 원래 숫자를 return 하도록 solution 함수를 완성해주세요.
-// 참고로 각 숫자에 대응되는 영단어는 다음 표와 같습니다.
-// 숫자	영단어
-// 0	zero
-// 1	one
-// 2	two
-// 3	three
-// 4	four
-// 5	five
-// 6	six
-// 7	seven
-// 8	eight
-// 9	nine
+    // 정답은 아무에게도 말하지 마세요.
+    // 콜라 빈 병 2개를 가져다주면 콜라 1병을 주는 마트가 있다. 빈 병 20개를 가져다주면 몇 병을 받을 수 있는가?
+    // 단, 보유 중인 빈 병이 2개 미만이면, 콜라를 받을 수 없다.
+    // 문제를 풀던 상빈이는 콜라 문제의 완벽한 해답을 찾았습니다. 상빈이가 푼 방법은 아래 그림과 같습니다. 
+    // 우선 콜라 빈 병 20병을 가져가서 10병을 받습니다. 받은 10병을 모두 마신 뒤, 가져가서 5병을 받습니다. 5
+    // 
+    // 병 중 4병을 모두 마신 뒤 가져가서 2병을 받고, 또 2병을 모두 마신 뒤 가져가서 1병을 받습니다
+    // . 받은 1병과 5병을 받았을 때 남은 1병을 모두 마신 뒤 가져가면 1병을 또 받을 수 있습니다.이 경우 상빈이는 총 10 + 5 + 2 + 1 + 1 = 19병의 콜라를 받을 수 있습니다.
+//     문제를 열심히 풀던 상빈이는 일반화된 콜라 문제를 생각했습니다. 
+// 이 문제는 빈 병 a개를 가져다주면 콜라 b병을 주는 마트가 있을 때, 빈 병 n개를 가져다주면 몇 병을 받을 수 있는지 계산하는 문제입니다. 
+// 기존 콜라 문제와 마찬가지로, 보유 중인 빈 병이 a개 미만이면, 추가적으로 빈 병을 받을 순 없습니다. 
+// 상빈이는 열심히 고심했지만, 일반화된 콜라 문제의 답을 찾을 수 없었습니다. 상빈이를 도와, 일반화된 콜라 문제를 해결하는 프로그램을 만들어 주세요.
+// 콜라를 받기 위해 마트에 주어야 하는 병 수 a, 빈 병 a개를 가져다 주면 마트가 주는 콜라 병 수 b, 상빈이가 가지고 있는 빈 병의 개수 n이 매개변수로 주어집니다. 
+// 상빈이가 받을 수 있는 콜라의 병 수를 return 하도록 solution 함수를 작성해주세요.
     /**
      * true면 치환 과정을 한 줄씩 출력 (이해용). 제출/실행 시 false로 바꾸면 됨.
      */
-    private static final boolean TRACE = true;
+    private static final boolean TRACE = false;
 
-    public int solution(String s) {
-        String result = s;
-        String[] words = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-        if (TRACE) {
-            System.out.println("[입력 s] 길이=" + s.length() + "  내용=\"" + s + "\"");
-            System.out.println("→ for는 단어 종류 10개(zero~nine)만큼만 돕니다. 입력 길이만큼 도는 게 아닙니다.\n");
+    public int solution(int a, int b, int n) {
+        int result = n;
+        int count = 0;
+        while (result >= a) {
+            int newBottles = result / a * b;
+            result = result % a + newBottles;
+            count += newBottles;
         }
-        for (int i = 0; i < words.length; i++) {
-            result = result.replace(words[i], String.valueOf(i));
-            String before = result;
-            String digit = String.valueOf(i);
-            result = result.replace(words[i], digit);
-            if (TRACE) {
-                System.out.println("--- i=" + i + "  replace(\"" + words[i] + "\", \"" + digit + "\")");
-                System.out.println("    replace 전: \"" + before + "\"");
-                System.out.println("    replace 후: \"" + result + "\"");
-                if (before.equals(result)) {
-                    System.out.println("    (변화 없음: 이 문자열 안에 \"" + words[i] + "\" 부분이 없음)");
-                }
-                System.out.println();
-            }
-        }
-        if (TRACE) {
-            System.out.println("[최종 문자열] \"" + result + "\" → parseInt\n");
-        }
-        return Integer.parseInt(result);
+        return count;
     }
 
     public static void main(String[] args) {
         Solution74 sol = new Solution74();
-        System.out.println(sol.solution("23four5six7"));
-        System.out.println(sol.solution("1zerotwozero3"));
+        System.out.println(sol.solution(2, 1, 20));
+        System.out.println(sol.solution(3, 2, 20));
+        System.out.println(sol.solution(5, 3, 20));
+        System.out.println(sol.solution(10, 2, 20));
+        System.out.println(sol.solution(10, 2, 20));
     }
 }
